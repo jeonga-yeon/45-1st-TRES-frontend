@@ -21,14 +21,12 @@
     display: flex;
     align-items: center;
     margin-bottom: 5px;
-    &:hover {
-      color: gray;
-    }
 
     .filter-reset {
       margin-left: 5px;
       &:hover {
         cursor: pointer;
+        color: gray;
       }
     }
 

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useRef } from 'react';
 import OptionChecks from './OptionChecks';
 import './FilterDetail.scss';
 
 const FilterDetail = ({ name, option, url, setUrl }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const spiceLevel = useRef();
 
   const handleSpiceLevel = e => {
     searchParams.set('spiceLevel', e.target.value);
@@ -14,6 +16,7 @@ const FilterDetail = ({ name, option, url, setUrl }) => {
   const handleReset = () => {
     searchParams.delete('spiceLevel');
     setSearchParams(searchParams);
+    spiceLevel.current.value = 0;
   };
   return (
     <div className="filter-detail">
@@ -36,6 +39,7 @@ const FilterDetail = ({ name, option, url, setUrl }) => {
         ) : (
           <div className="filter-check">
             <input
+              ref={spiceLevel}
               className="filter-range"
               type="range"
               id="volume"
