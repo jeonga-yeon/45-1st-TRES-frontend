@@ -6,7 +6,9 @@ const Product = ({ product: { id, food, eng_food, price, food_image } }) => {
   const navigate = useNavigate();
   return (
     <div className="product" onClick={() => navigate(`/products/${id}`)}>
-      <img className="food-img" alt="음식 사진" src={food_image} />
+      <div className="img-container">
+        <img className="food-img" alt="음식 사진" src={food_image} />
+      </div>
       <p className="korean-name">{food}</p>
       <p className="english-name">{eng_food}</p>
       <p>

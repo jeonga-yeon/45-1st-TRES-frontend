@@ -1,16 +1,29 @@
 @import '../../../styles/variables';
 
 .product {
-  height: 500px;
   font-size: 16px;
   line-height: 20px;
   &:hover {
     cursor: pointer;
   }
-  .food-img {
-    width: 375px;
-    height: 375px;
-    object-fit: cover;
+  .img-container {
+    position: relative;
+    .food-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .img-container::after {
+    display: block;
+    content: "";
+    padding-bottom: 100%;
+  }
+  .korean-name {
+    margin-top: 5px;
   }
   .english-name {
     margin-bottom: 12px;

@@ -9,6 +9,8 @@ const ProductList = () => {
   const [isSorted, setIsSorted] = useState(false);
   const [products, setProducts] = useState([]);
   const [continent, setContinent] = useState([]);
+  const [currentContinent, setCurrentContinent] = useState('');
+  const [currentCountry, setCurrentCountry] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const { id } = useParams();
 
@@ -23,6 +25,8 @@ const ProductList = () => {
       .then(response => {
         setProducts(response.foods);
         setContinent(response.countries);
+        setCurrentContinent(response.foods[0].continent);
+        setCurrentCountry(response.foods[0].country);
       });
   }, [id, searchParams]);
 
@@ -30,7 +34,7 @@ const ProductList = () => {
     <div className="product-list">
       <header className="list-header">
         <h1 className="continent">
-          {products[0]?.continent} / {products[0]?.country}
+          {currentContinent} / {currentCountry}
         </h1>
         <button
           className="sort-button"
