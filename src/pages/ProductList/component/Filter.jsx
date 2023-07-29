@@ -35,11 +35,13 @@ const MEAT_OPTION = [
   { id: 2, category: `meatId`, type: 'pig', content: '돼지' },
   { id: 3, category: `meatId`, type: 'sheep', content: '양' },
   { id: 4, category: `meatId`, type: 'chicken', content: '닭' },
+  { id: 5, category: `meatId`, type: 'blank', content: 'blank' },
 ];
 const ALLERGY_OPTION = [
   { id: 1, category: 'allergyId', type: 'milk', content: '우유' },
   { id: 2, category: 'allergyId', type: 'peanut', content: '땅콩' },
   { id: 3, category: 'allergyId', type: 'egg', content: '계란' },
+  { id: 4, category: 'allergyId', type: 'blank', content: 'blank' },
 ];
 
 const FILTER_TITLE = [

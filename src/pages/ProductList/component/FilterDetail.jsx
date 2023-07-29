@@ -34,7 +34,13 @@ const FilterDetail = ({ name, option, url, setUrl }) => {
       {isChecked &&
         (option ? (
           option.map(item => (
-            <OptionChecks url={url} setUrl={setUrl} key={item.id} item={item} />
+            <OptionChecks
+              url={url}
+              setUrl={setUrl}
+              key={item.id}
+              item={item}
+              isChecked={isChecked}
+            />
           ))
         ) : (
           <div className="filter-check">
@@ -46,7 +52,11 @@ const FilterDetail = ({ name, option, url, setUrl }) => {
               name="volume"
               min="0"
               max="3"
-              defaultValue={0}
+              defaultValue={
+                searchParams.get('spiceLevel')
+                  ? searchParams.get('spiceLevel')
+                  : 0
+              }
               onClick={handleSpiceLevel}
             />
             <label htmlFor="volume" />

@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './OptionChecks.scss';
 
-const OptionChecks = ({ item: { id, category, type, content } }) => {
-  const [checked, setChecked] = useState(false);
+const OptionChecks = ({ item: { id, category, type, content }, isChecked }) => {
+  const [checked, setChecked] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
+  const checkInput = useRef();
+
+  const VEGETARIAN = 'vegetarian';
 
   useEffect(() => {
-    if (category === 'vegetarian') {
+    if (searchParams.get(VEGETARIAN) === `"yes"` && category === VEGETARIAN) {
+      setChecked(true);
+    }
+  }, [isChecked]);
+
+  useEffect(() => {
+    if (category === VEGETARIAN) {
       if (checked === true) {
-        searchParams.set('vegetarian', `"yes"`);
+        searchParams.set(VEGETARIAN, `"yes"`);
         setSearchParams(searchParams);
       } else {
-        searchParams.delete('vegetarian');
+        searchParams.delete(VEGETARIAN);
         setSearchParams(searchParams);
       }
     } else {
@@ -31,20 +40,31 @@ const OptionChecks = ({ item: { id, category, type, content } }) => {
   }, [checked]);
 
   return (
-    <div className="filter-check" key={id}>
-      <input
-        className="filter-input"
-        type="checkbox"
-        id={type}
-        name={type}
-        checked={checked}
-        onChange={() => setChecked(prev => !prev)}
-      />
-      <label className="filter-label" htmlFor={type} />
-      <label className="label-name" htmlFor={type}>
-        {content}
-      </label>
-    </div>
+    type !== 'blank' && (
+      <div className="filter-check" key={id}>
+        <input
+          className="filter-input"
+          type="checkbox"
+          id={type}
+          name={type}
+          ref={checkInput}
+          checked={
+            category === 'vegetarian'
+              ? searchParams.get(category) === `"yes"`
+                ? true
+                : false
+              : searchParams.getAll(category).indexOf(id.toString()) !== -1
+              ? true
+              : false
+          }
+          onChange={() => setChecked(checkInput.current.checked)}
+        />
+        <label className="filter-label" htmlFor={type} />
+        <label className="label-name" htmlFor={type}>
+          {content}
+        </label>
+      </div>
+    )
   );
 };
 
