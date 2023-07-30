@@ -8,10 +8,12 @@ import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
 import IsLogin from './pages/Login/component/IsLogin';
 import Empty from './pages/Empty/Empty';
+import ScrollToTop from './components/ScrollToTop';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route element={<Container />}>
           <Route path="/" element={<Main />} />

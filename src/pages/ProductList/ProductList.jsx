@@ -3,7 +3,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import Product from './component/Product';
 import Filter from './component/Filter';
 import './ProductList.scss';
-import { PRODUCTLIST_API } from '../../config';
+import { API } from '../../config';
 
 const ProductList = () => {
   const [isSorted, setIsSorted] = useState(false);
@@ -20,7 +20,7 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    fetch(`${PRODUCTLIST_API}${id}&${searchParams.toString()}`)
+    fetch(`${API.PRODUCTLIST_API}${id}&${searchParams.toString()}`)
       .then(response => response.json())
       .then(response => {
         setProducts(response.foods);

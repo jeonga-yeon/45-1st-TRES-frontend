@@ -5,6 +5,8 @@ import Search from './component/Search/Search';
 import './Nav.scss';
 
 const Nav = () => {
+  const TOKEN = localStorage.getItem('TOKEN');
+
   return (
     <div className="nav">
       <div className="nav-container">
@@ -17,7 +19,7 @@ const Nav = () => {
               <Link to=".#" className="to-customer-service link">
                 고객센터
               </Link>
-              {localStorage.getItem('TOKEN') ? (
+              {TOKEN ? (
                 <div className="loggedin">
                   <span className="welcom-ment">트레스김 님반갑습니다.</span>
                   <button className="user-btn">
@@ -59,7 +61,7 @@ const Nav = () => {
                   />
                 </button>
               </Link>
-              <Link className="link-cart" to="/cart">
+              <Link className="link-cart" to={TOKEN ? '/cart' : '/'}>
                 <button className="to-cart link-btn">
                   <img
                     src="/images/icon/cartbag.svg"

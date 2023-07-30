@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CATEGORY_DATA from './CATEGORY_DATA';
+import ContinentData from '../../../../data/ContinentData';
 import './CategoryList.scss';
 
 const CategoryList = () => {
   const [currentMenuId, setCurrentMenuId] = useState(CATEGORY_DATA.length);
-  const [subCategory, setSubCategory] = useState([]);
-
-  useEffect(() => {
-    fetch('/data/main-continent-data.json')
-      .then(res => res.json())
-      .then(data => {
-        setSubCategory(data);
-      });
-  }, []);
+  const subCategory = ContinentData;
 
   const enterMouse = id => {
     setCurrentMenuId(id - 1);

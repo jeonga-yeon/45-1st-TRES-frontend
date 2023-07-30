@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CART_API } from '../../../config';
+import { API } from '../../../config';
 import './ProductInCart.scss';
 
 let selectList = [];
@@ -33,7 +33,7 @@ const ProductInCart = props => {
   const handleCount = id => {
     setQuantityChange(quantity.current.value);
     setIsDisabled(true);
-    fetch(CART_API, {
+    fetch(API.CART_API, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -48,7 +48,7 @@ const ProductInCart = props => {
 
   const selectDelete = id => {
     if (checkItems.includes(id)) {
-      fetch(`${CART_API}?foodId=${id}`, {
+      fetch(`${API.CART_API}?foodId=${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',

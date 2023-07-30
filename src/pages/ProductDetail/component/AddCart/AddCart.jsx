@@ -30,7 +30,7 @@ const AddCart = ({ id, cost, count, languageType }) => {
               alert(`장바구니에 담겼습니다`);
               return res.json();
             }
-            throw new Error('통신실패!');
+            throw new Error('장바구니에 담기 실패');
           })
           .catch(err => alert(err))
       : navigate('/email-verification');

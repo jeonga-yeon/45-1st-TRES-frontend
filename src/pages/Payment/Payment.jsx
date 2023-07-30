@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PaymentProduct from './component/PaymentProduct';
 import ShippingAddress from './component/ShippingAddress';
 import PaymentModal from './component/PaymentModal';
-import { PAYMENT_API } from '../../config';
+import { API } from '../../config';
 import './Payment.scss';
 import { useSearchParams } from 'react-router-dom';
 
@@ -30,8 +30,6 @@ const Payment = () => {
     updatedpaymentProduct[id] = item;
   });
   const renderpaymentProduct = Object.values(updatedpaymentProduct);
-
-  // const possessionPoint = paymentProduct[0]?.points;
   const possessionPoint = 1000000;
   const foodPriceSum =
     parseInt(
@@ -66,32 +64,13 @@ const Payment = () => {
   };
 
   const showOrderComplete = () => {
-    // fetch(PAYMENT_API, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     authorization: token,
-    //   },
-    //   body: JSON.stringify({
-    //     point: foodPriceSum + DELIVERY_FEE,
-    //     firstName: paymentProduct[0].firstName,
-    //     lastName: paymentProduct[0].lastName,
-    //     address: paymentProduct[0].address,
-    //     phoneNumber: paymentProduct[0].phoneNumber,
-    //     email: paymentProduct[0].email,
-    //   }),
-    // }).then(response => {
-    //   if (response.status === 200) {
-    //     setModalOpen(true);
-    //   }
-    // });
     setModalOpen(true);
   };
 
   const [searchParams, setSearchParams] = useSearchParams();
   const token = localStorage.getItem('TOKEN');
   useEffect(() => {
-    fetch(`${PAYMENT_API}/checkout`, {
+    fetch(`${API.PAYMENT_API}/checkout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

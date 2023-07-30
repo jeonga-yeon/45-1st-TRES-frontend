@@ -20,7 +20,6 @@ const Login = () => {
   const [passwordRegex, setPasswordRegex] = useState(``);
   const [PasswordEqualText, setIsPasswordEqualtext] = useState(``);
   const [phoneNumberRegex, setPhoneNumberRegex] = useState(``);
-
   const [passwordRequired, setPasswordRequired] = useState(``);
   const [passwordEqualRequired, setPasswordEqualRequired] = useState(``);
   const [firstNameRequired, setFirstNameRequired] = useState(``);
